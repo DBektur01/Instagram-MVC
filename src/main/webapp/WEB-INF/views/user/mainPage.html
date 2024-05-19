@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Instagram Home</title>
+  <style>
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    body {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: #fafafa;
+      color: #fff;
+    }
+
+    .container {
+      display: flex;
+      width: 100%;
+      height: 100%;
+    }
+
+    .sidebar {
+      width: 240px;
+      background-color: #000;
+      padding: 20px;
+    }
+
+    .sidebar .logo h1 {
+      font-family: 'Billabong', cursive;
+      font-size: 2rem;
+      color: #fff;
+      margin-bottom: 20px;
+    }
+
+    .sidebar .nav-links {
+      list-style: none;
+      padding: 0;
+    }
+
+    .sidebar .nav-links li {
+      margin: 10px 0;
+    }
+
+    .sidebar .nav-links a {
+      color: #fff;
+      text-decoration: none;
+      font-size: 1.2rem;
+      display: flex;
+      align-items: center;
+    }
+
+    .main-content {
+      flex: 1;
+      padding: 20px;
+      background-color: #000;
+    }
+
+    .stories {
+      display: flex;
+      overflow-x: auto;
+      margin-bottom: 20px;
+    }
+
+    .story {
+      width: 80px;
+      height: 80px;
+      background-color: #444;
+      border-radius: 40px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      margin-right: 10px;
+    }
+
+    .posts .post {
+      background-color: #111;
+      padding: 10px;
+      margin-bottom: 20px;
+    }
+
+    .post-header {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .post-header span {
+      color: #888;
+    }
+
+    .post-content img {
+      width: 100%;
+      height: auto;
+    }
+
+    .sidebar-right {
+      width: 320px;
+      background-color: #000;
+      padding: 20px;
+      border-left: 1px solid #333;
+    }
+
+    .user-info {
+      display: flex;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .user-info img {
+      border-radius: 50%;
+      margin-right: 10px;
+    }
+
+    .user-details {
+      flex: 1;
+    }
+
+    .user-details span {
+      display: block;
+      color: #888;
+    }
+
+    .switch {
+      color: #3897f0;
+      text-decoration: none;
+    }
+
+    .recommendations h3 {
+      color: #888;
+      margin-bottom: 10px;
+    }
+
+    .recommendation {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 10px;
+    }
+
+    .recommendation span {
+      color: #888;
+    }
+
+    .recommendation a {
+      color: #3897f0;
+      text-decoration: none;
+    }
+  </style>
+</head>
+<body>
+<div class="container">
+  <nav class="sidebar">
+    <div class="logo">
+      <h1>Instagram</h1>
+    </div>
+    <ul class="nav-links">
+      <li><a href="#">Главная</a></li>
+      <li><a href="#">Поисковый запрос</a></li>
+      <li><a href="#">Интересное</a></li>
+      <li><a href="#">Reels</a></li>
+      <li><a href="#">Сообщения</a></li>
+      <li><a href="#">Уведомления</a></li>
+      <li><a href="#">Создать</a></li>
+      <li><a href="#">Профиль</a></li>
+      <li><a href="#">Threads</a></li>
+      <li><a href="#">Ещё</a></li>
+    </ul>
+  </nav>
+  <main class="main-content">
+    <div class="stories">
+      <div class="story">kazan.sh...</div>
+      <div class="story">sweetd1i</div>
+      <div class="story">addixss.0</div>
+    </div>
+    <div class="posts">
+      <div class="post">
+        <div class="post-header">
+          <span>ask_consulting.kg</span>
+          <span>2 дн.</span>
+        </div>
+        <div class="post-content">
+          <img src="https://via.placeholder.com/500x500" alt="Post Image">
+        </div>
+      </div>
+    </div>
+  </main>
+  <aside class="sidebar-right">
+    <div class="user-info">
+      <img src="https://via.placeholder.com/50" alt="User Profile">
+      <div class="user-details">
+        <span>p10128e34</span>
+        <span>Dansi Brune</span>
+      </div>
+      <a href="#" class="switch">Переключиться</a>
+    </div>
+    <div class="recommendations">
+      <h3>Рекомендации для вас</h3>
+      <div class="recommendation">
+        <span>sport_club_sanjirova</span>
+        <a href="#">Подписаться</a>
+      </div>
+      <div class="recommendation">
+        <span>tynarbekov_bekbol2007</span>
+        <a href="#">Подписаться</a>
+      </div>
+      <div class="recommendation">
+        <span>sagynalievv</span>
+        <a href="#">Подписаться</a>
+      </div>
+      <div class="recommendation">
+        <span>borushov.762</span>
+        <a href="#">Подписаться</a>
+      </div>
+      <div class="recommendation">
+        <span>bazarbaevail10</span>
+        <a href="#">Подписаться</a>
+      </div>
+    </div>
+  </aside>
+</div>
+</body>
+</html>
