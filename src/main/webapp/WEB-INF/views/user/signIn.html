@@ -112,29 +112,39 @@
 <body>
 <div class="container">
     <h1>Instagram</h1>
-    <input type="text" placeholder="Phone, username or email. address">
-    <input type="password" placeholder="Password">
-    <button>Sing in</button>
+
+    <form action="/auth/login" th:object="${loginUser}" method="POST">
+        <label>
+            <input type="text" th:field="*{userName}" placeholder="Username" required>
+        </label>
+        <label>
+            <input type="password" th:field="*{password}" placeholder="Password" required>
+        </label>
+    </form>
+
+    <button  id="signin-btn">Sign in</button>
     <div class="divider">OR</div>
     <a href="#" class="fb-login">
         <img src="https://upload.wikimedia.org/wikipedia/commons/5/51/Facebook_f_logo_%282019%29.svg" alt="Facebook Logo" width="20" height="20">
-        Login with Facebook
+        <a href="https://www.facebook.com/login/" class="login_facebook" >Login with Facebook</a>
+        <br>
+        <br>
     </a>
     <a href="#" class="forgot-password">Forgot your password?</a>
     <div class="signup">
-        Don't have an account yet?<a href="http://localhost:8082/auth/create">Register</a>
+        Don't have an account yet? <a href="http://localhost:8082/auth/create">Register</a>
     </div>
 </div>
 <div class="install-app">
     <p>Install an app.</p>
-    <a href="#"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
-    <a href="#"><img src="https://static.cdninstagram.com/rsrc.php/v3/y9/r/E_2mQvC3HG-.png" alt="App Store"></a>
+    <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D972783B0-DE01-4CDF-847B-A7FAD44C4A21%26utm_campaign%3DsignupPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge&pli=1"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
+    <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="https://static.cdninstagram.com/rsrc.php/v3/y9/r/E_2mQvC3HG-.png" alt="App Store"></a>
 </div>
 
-<div>
-<!--    <p>Meta     Information     Blog     Vacancies     Help    API     Confidentiality </p>-->
-</div>
-
-
+<script>
+    document.getElementById('signin-btn').addEventListener('click', function() {
+        window.location.href = 'https://www.instagram.com/'; // replace with the URL you want to redirect to
+    });
+</script>
 </body>
 </html>

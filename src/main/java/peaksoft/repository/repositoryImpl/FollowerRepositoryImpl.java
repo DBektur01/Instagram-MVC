@@ -1,13 +1,12 @@
 package peaksoft.repository.repositoryImpl;
-
 import jakarta.persistence.EntityManager;
+import jakarta.persistence.PersistenceContext;
 import jakarta.transaction.Transactional;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Repository;
 import peaksoft.entities.Follower;
 import peaksoft.entities.User;
 import peaksoft.repository.FollowerRepository;
-
 import java.util.List;
 
 /**
@@ -17,7 +16,7 @@ import java.util.List;
 @RequiredArgsConstructor
 @Transactional
 public class FollowerRepositoryImpl implements FollowerRepository {
-
+@PersistenceContext
     private EntityManager entityManager;
 
     @Override

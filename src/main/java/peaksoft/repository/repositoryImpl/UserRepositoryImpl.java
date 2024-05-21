@@ -18,7 +18,6 @@ import java.util.List;
 @Repository
 @RequiredArgsConstructor
 @Transactional
-
 public class UserRepositoryImpl implements UserRepository {
     @PersistenceContext
     private final EntityManager entityManager;
@@ -26,17 +25,24 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public String singUp(User newUser) {
-        try {
-            for (User user : finAllUsers()) {
-                if (!user.getUserName().equals(newUser.getUserName())) {
-                    entityManager.persist(newUser);
-                    return "Success";
-                }
-            }
-            throw new MyException(String.format("A user with this name %s exists in the database", newUser.getUserName()));
-        } catch (MyException e) {
-            return e.getMessage();
-        }
+        entityManager.persist(newUser);
+        return "Successfully registered!";
+//        boolean isExists = false;
+//        try {
+//            for (User user : finAllUsers()) {
+//                if (user.getUserName().equals(newUser.getUserName())) {
+//                    isExists = true;
+//                    break;
+//                }
+//            }
+//            if (!isExists) {
+//                entityManager.persist(newUser);
+//                return "Successfully registered!";
+//            }
+//            throw new MyException(String.format("A user with this name %s exists in the database", newUser.getUserName()));
+//        } catch (MyException e) {
+//            return e.getMessage();
+//        }
     }
 
     @Override
@@ -44,11 +50,11 @@ public class UserRepositoryImpl implements UserRepository {
         try {
             for (User user : finAllUsers()) {
                 if (user.getUserName().equals(oldUser.getUserName())
-                        && user.getEmail().equals(oldUser.getEmail())) {
+                        && user.getPassword().equals(oldUser.getPassword())) {
                     return generateAuthToken(user);
                 }
             }
-            throw new MyException(String.format("Not found user with %s "));
+            throw new MyException(String.format("Not found user with %s  user name ",oldUser.getUserName()));
         } catch (MyException e) {
             throw new RuntimeException(e.getMessage());
         }
