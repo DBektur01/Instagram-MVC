@@ -46,18 +46,14 @@ public class UserRepositoryImpl implements UserRepository {
     }
 
     @Override
-    public String singIn(User oldUser) {
-        try {
-            for (User user : finAllUsers()) {
-                if (user.getUserName().equals(oldUser.getUserName())
-                        && user.getPassword().equals(oldUser.getPassword())) {
-                    return generateAuthToken(user);
-                }
+    public User singIn(User oldUser) {
+        for (User user : finAllUsers()) {
+            if (user.getUserName().equals(oldUser.getUserName())
+                    && user.getPassword().equals(oldUser.getPassword())) {
+                return user;
             }
-            throw new MyException(String.format("Not found user with %s  user name ",oldUser.getUserName()));
-        } catch (MyException e) {
-            throw new RuntimeException(e.getMessage());
         }
+        return null;
     }
 
     @Override
@@ -67,61 +63,46 @@ public class UserRepositoryImpl implements UserRepository {
 
     @Override
     public User findUserById(Long userId) {
-        try {
-            User user = entityManager.find(User.class, userId);
-            if (user != null) {
-                return user;
-            } else {
-                throw new MyException(String.format("User with %d not found !", userId));
-            }
-        } catch (MyException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        return entityManager.find(User.class, userId);
     }
 
     @Override
     public List<User> finAllUsers() {
-        try {
-            if (finAllUsers().isEmpty()) {
-                throw new MyException("FindAllUser isEmpty !");
-            }
-            return entityManager.createQuery("select u from User u", User.class).getResultList();
-
-        } catch (MyException e) {
-            throw new RuntimeException(e.getMessage());
-        }
+        return entityManager.createQuery("select u from User u", User.class).getResultList();
     }
 
     @Override
     public void deleteUserById(Long userId) {
-        try {
-            User user = entityManager.find(User.class, userId);
-            if (user != null) {
-                entityManager.remove(user);
-            } else {
-                throw new MyException(String.format("User with %d not found !", userId));
-            }
-        } catch (MyException e) {
-            System.out.println(e.getMessage());
-        }
+        User user = entityManager.find(User.class, userId);
+        entityManager.remove(user);
+//        for (User user:finAllUsers()){
+//            if (user.getId().equals(userId)){
+//                entityManager.remove(user);
+//            }
+//        }
     }
 
+    @Override
+    public User updateUserById(Long userId, User newUser) {
+        User user = entityManager.find(User.class, userId);
+
+        user.setUserName(newUser.getUserName());
+        user.setEmail(newUser.getEmail());
+        user.setPhoneNumber(newUser.getPhoneNumber());
+        user.setPassword(newUser.getPassword());
+
+        return user;
+    }
 
 
     @Override
     public User searchUserByName(String userName) {
-        try {
-            if (finAllUsers().isEmpty()) {
-                throw new MyException(String.format("Not found user with %s ",userName));
-            }
-            return entityManager.createQuery("select u from User u where u.userName like :userName", User.class)
-                    .setParameter("userName", "%" + userName + "%").getSingleResult();
-        }catch (MyException e){
-            throw new RuntimeException(e.getMessage());
+        return entityManager.find(User.class, userName);
+//        for (User user:finAllUsers()){
+//            if (user.getUserName().equals(userName)) {
+//                return user;
+//            }
+//        }
+    }
 
-        }
-    }
-    private String generateAuthToken(User user) {
-        return "generated_auth_token_for_" + user.getId();
-    }
 }

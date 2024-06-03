@@ -10,6 +10,6 @@ public interface UserInfoService {
     String saveUserInfo(Long userId, UserInfo newUserInfo);
     UserInfo findUserInfoByUserId(Long userId);
     UserInfo updateUserInfoById(Long oldUsrInfoId,UserInfo newUserInfo);
-    Image changeImage(Long imageId, Image newImage);
+    Image changeImage(Long imageId, String newImage);
     String deletedImageById(Long imageId);
 }

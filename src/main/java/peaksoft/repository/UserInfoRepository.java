@@ -13,8 +13,7 @@ public interface UserInfoRepository {
     UserInfo findUserInfoByUserId(Long userId);
     UserInfo updateUserInfoById(Long oldUsrInfoId,UserInfo newUserInfo);
     void deleteUserInfoById(Long userInfoId);
-    User updateUserById(Long oldUserInfoId,UserInfo newUserInfo);
-    Image changeImage(Long imageId,Image newImage);
+    Image changeImage(Long imageId,String newImage);
     String deletedImageById(Long userIngo,Long imageId);
 
 

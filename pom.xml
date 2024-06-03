@@ -85,6 +85,7 @@
 
   </dependencies>
   <build>
+
     <finalName>mini-Instagram</finalName>
     <plugins>
       <plugin>

@@ -7,13 +7,24 @@
 
     <style>
         body {
+            font-family: -apple-system, BlinkMacSystemFont, "Segoe UI", Roboto, Helvetica, Arial, sans-serif;
+            background-image: url('https://assets.isu.pub/document-structure/230503174721-4d31035d3d9e0cecf43783f54d1ab206/v1/c7497f66031790276ba8e919fe7e3297.jpeg');
+            background-size: cover;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        body {
             font-family: Arial, sans-serif;
             background-color: #fafafa;
             display: flex;
             flex-direction: column;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            height: 90vh;
             margin: 0;
         }
 
@@ -22,13 +33,15 @@
             border: 1px solid #dbdbdb;
             padding: 40px;
             text-align: center;
-            width: 350px;
+            width: 300px;
+            height: 86vh;
+            margin-top: 70px;
         }
 
         .container h1 {
             font-family: 'Billabong', cursive;
             font-size: 50px;
-            margin-bottom: 10px;
+            margin-bottom: 20px;
         }
 
         .container .subtitle {
@@ -40,7 +53,7 @@
         .container input {
             width: 100%;
             padding: 10px;
-            margin: 5px 0;
+            margin-top: 5px;
             border: 1px solid #dbdbdb;
             border-radius: 3px;
             box-sizing: border-box;
@@ -99,6 +112,13 @@
             font-size: 14px;
         }
 
+        .container .error-message {
+            font-size: 13px;
+            color: red;
+            text-align: start;
+        }
+
+
         .install-app {
             margin-top: 20px;
             text-align: center;
@@ -120,37 +140,135 @@
     <h1>Instagram</h1>
     <div class="subtitle">Sign up to see your friends' photos and videos.</div>
     <a href="https://www.facebook.com/login" class="button">Login with Facebook</a>
+
     <div class="divider">OR</div>
-    <form action="/auth/create" th:object="${newUser}" method="POST">
-        <label>
-            <input type="text" th:field="*{phoneNumber}" placeholder="Mobile phone or email address" required>
+    <form action="/auth/signUp" th:object="${newUser}" method="POST">
+        <label for="phoneNumber">
+            <input type="text" th:field="*{phoneNumber}" id="phoneNumber" pattern="[+][9][9][6][0-9]{9}"
+                   placeholder="Mobile phone " required oninput="validatePhoneNumber()">
+            <div id="phoneNumber-message " class="error-message"></div>
+        </label>
+        <label for="email">
+            <input type="text" th:field="*{userName}" id="email" placeholder="First and last name" required>
         </label>
         <label>
-            <input type="text" th:field="*{userName}" placeholder="First and last name" required>
+            <input type="email" th:field="*{email}" placeholder="Email" required>
+
         </label>
-        <label>
-            <input type="text" th:field="*{email}" placeholder="Email" required>
+        <label for="password">
+            <input type="password" th:field="*{password}" id="password" placeholder="Password" required
+                   oninput="validatePassword()">
+            <div id="password-message" class="error-message"></div>
         </label>
-        <label>
-            <input type="password" th:field="*{password}" placeholder="Password" required>
-        </label>
-        <a type="submit" class="button" href="http://localhost:8082/auth/profile">Registration</a>
+        <button type="submit" class="button">Registration</button>
+    </form>
 
     <div class="terms">
-        People who use our service may have uploaded your contact information to Instagram. <a href="https://www.facebook.com/help/instagram/261704639352628">More details</a><br>
-        By registering, you accept our <a href="https://help.instagram.com/581066165581870/?locale=ru_RU" >Conditions</a>, <a href="https://www.facebook.com/privacy/policy">Privacy Policy</a> и <a href="https://privacycenter.instagram.com/policies/cookies/">Cookie Policy</a>.
+        People who use our service may have uploaded your contact information to Instagram. <a
+            href="https://www.facebook.com/help/instagram/261704639352628">More details</a><br>
+        By registering, you accept our <a href="https://help.instagram.com/581066165581870/?locale=ru_RU">Conditions</a>,
+        <a href="https://www.facebook.com/privacy/policy">Privacy Policy</a> и <a
+            href="https://privacycenter.instagram.com/policies/cookies/">Cookie Policy</a>.
     </div>
-<!--    <a type="submit" href="http://localhost:8082/auth/login" class="button">Registration</a>-->
+
     <div class="login">
-        Do you have an account? <a href="http://localhost:8082/auth/login">Sign in</a>
+        Do you have an account? <a href="http://localhost:8080/auth/login">Sign in</a>
     </div>
-    </form>
+
 
     <div class="install-app">
         <p>Install an app.</p>
-        <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D972783B0-DE01-4CDF-847B-A7FAD44C4A21%26utm_campaign%3DsignupPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge&pli=1"><img src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg" alt="Google Play"></a>
-        <a href="https://apps.apple.com/us/app/instagram/id389801252"><img src="https://static.cdninstagram.com/rsrc.php/v3/y9/r/E_2mQvC3HG-.png" alt="App Store"></a>
+        <a href="https://play.google.com/store/apps/details?id=com.instagram.android&referrer=ig_mid%3D972783B0-DE01-4CDF-847B-A7FAD44C4A21%26utm_campaign%3DsignupPage%26utm_content%3Dlo%26utm_source%3Dinstagramweb%26utm_medium%3Dbadge&pli=1"><img
+                src="https://upload.wikimedia.org/wikipedia/commons/7/78/Google_Play_Store_badge_EN.svg"
+                alt="Google Play"></a>
+        <a href="https://apps.apple.com/us/app/instagram/id389801252"><img
+                src="https://static.cdninstagram.com/rsrc.php/v3/y9/r/E_2mQvC3HG-.png" alt="App Store"></a>
     </div>
 </div>
+
+<script>
+    function validatePhoneNumber() {
+        var emailInput = document.getElementById('phoneNumber');
+        var emailMessage = document.getElementById('phoneNumber-message');
+
+        var phoneNumber = emailInput.value;
+
+        // Проверка +996
+        if (!phoneNumber.startsWith('+996')) {
+            emailMessage.textContent = 'Start with +996';
+        } else {
+            phoneNumberMessage.textContent = '';
+        }
+    }
+
+    function validateEmail() {
+        var emailInput = document.getElementById('email');
+        var emailMessage = document.getElementById('email-message');
+
+        var email = emailInput.value;
+
+        // Проверка на окончание на @gmail.com
+        if (!email.endsWith('@gmail.com')) {
+            emailMessage.textContent = 'Email must end with @gmail.com.';
+        } else {
+            emailMessage.textContent = '';
+        }
+    }
+
+    function validatePassword() {
+        var passwordInput = document.getElementById('password');
+        var passwordMessage = document.getElementById('password-message');
+
+        var password = passwordInput.value;
+
+        // Проверка на длину пароля
+        if (password.length < 8) {
+            passwordMessage.textContent = 'Password must be at least 8 characters long.';
+        } else {
+            // Проверка наличия цифр и спецсимволов в пароле
+            var hasDigit = /\d/.test(password);
+            var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+            if (!hasDigit || !hasSpecialChar) {
+                passwordMessage.textContent = 'Password must contain at least one digit and one special character.';
+            } else {
+                passwordMessage.textContent = '';
+            }
+        }
+    }
+
+    function validateForm() {
+        // Валидация email
+        var emailInput = document.getElementById('email');
+        var email = emailInput.value;
+
+        // Проверка на окончание на @gmail.com
+        if (!email.endsWith('@gmail.com')) {
+            alert('Email must end with @gmail.com.');
+            return false;
+        }
+
+        // Валидация пароля
+        var passwordInput = document.getElementById('password');
+        var password = passwordInput.value;
+
+        // Проверка на длину пароля, наличие цифр и спецсимволов
+        if (password.length < 8) {
+            alert('Password must be at least 8 characters long.');
+            return false;
+        }
+
+        var hasDigit = /\d/.test(password);
+        var hasSpecialChar = /[!@#$%^&*(),.?":{}|<>]/.test(password);
+
+        if (!hasDigit || !hasSpecialChar) {
+            alert('Password must contain at least one digit and one special character.');
+            return false;
+        }
+
+        return true;
+    }
+</script>
+
 </body>
 </html>

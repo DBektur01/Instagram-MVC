@@ -60,7 +60,7 @@ public class User {
     @OneToMany(mappedBy = "user",cascade = {REMOVE})
     private List<Comment>comment;
 
-    @OneToOne(mappedBy = "user")
+    @OneToOne(mappedBy = "user",cascade = {PERSIST, REMOVE})
     private Like like;
 
 

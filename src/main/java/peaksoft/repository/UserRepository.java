@@ -11,11 +11,12 @@ import java.util.List;
 public interface UserRepository {
 
     String singUp(User newUser);
-    String singIn(User oldUser);
+    User singIn(User oldUser);
     UserInfo userProfile(UserInfo userInfo);
     User findUserById(Long userId);
     List<User> finAllUsers();
     void deleteUserById(Long userId);
+    User updateUserById(Long userId,User newUser);
 
     User searchUserByName(String userName);
 

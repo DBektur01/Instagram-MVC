@@ -31,7 +31,7 @@ public class UserInfoServiceImpl implements UserInfoService {
     }
 
     @Override
-    public Image changeImage(Long imageId, Image newImage) {
+    public Image changeImage(Long imageId, String newImage) {
         return userInfoRepository.changeImage(imageId,newImage);
     }
 

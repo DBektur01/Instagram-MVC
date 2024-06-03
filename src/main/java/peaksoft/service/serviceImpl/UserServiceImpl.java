@@ -24,7 +24,7 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public String singIn(User oldUser) {
+    public User singIn(User oldUser) {
         return userRepository.singIn(oldUser);
     }
 

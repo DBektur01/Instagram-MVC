@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Instagram Profile</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #000;
+            color: #fff;
+            margin: 0;
+            padding: 0;
+            display: flex;
+        }
+
+        .menu {
+            position: fixed;
+            left: 0;
+            top: 0;
+            height: 100%;
+            width: 250px;
+            padding: 20px;
+            background-color: #000;
+            border-right: 1px solid #333;
+        }
+
+        .menu a {
+            display: flex;
+            align-items: center;
+            text-decoration: none;
+            color: white;
+            padding: 15px 0;
+            font-size: 18px;
+        }
+
+        .menu a img {
+            margin-right: 15px;
+            width: 24px;
+            height: 24px;
+        }
+
+        .profile-pic {
+            width: 30px;
+            height: 30px;
+            border-radius: 50%;
+        }
+
+        .profile-container {
+            background-color: #000;
+            border: 1px solid #333;
+            border-radius: 10px;
+            width: 80%;
+            margin: 100px auto;
+            padding: 200px;
+            text-align: center;
+            color: #fff;
+        }
+
+        .profile-header {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+        }
+
+        .profile-header img {
+            border-radius: 50%;
+            width: 100px;
+            height: 100px;
+            border: 2px solid #fff;
+            margin-left: -650px;
+            margin-top: -40px;
+        }
+
+        .profile-header h2 {
+            margin: 10px 0 0 0;
+        }
+
+        .profile-stats {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 10px;
+            border-top: 1px solid #333;
+            padding: 100px;
+            right: 50px;
+
+
+        }
+
+        .profile-stats div {
+            text-align: center;
+        }
+
+        .profile-stats div span {
+            display: block;
+            font-weight: bold;
+        }
+
+        .profile-action {
+            margin-top: 20px;
+        }
+
+        .profile-action button {
+            background-color: #3897f0;
+            border: none;
+            color: #fff;
+            padding: 10px 20px;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+
+        .profile-navigation {
+            display: flex;
+            justify-content: space-around;
+            margin-top: 20px;
+            border-top: 1px solid #333;
+            padding-top: 20px;
+        }
+
+        .profile-navigation a {
+            color: #3897f0;
+            text-decoration: none;
+        }
+    </style>
+</head>
+<body>
+<div class="menu">
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/home.png" alt="Home">
+        Home
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/search.png" alt="Search">
+        Search
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/compass.png" alt="Interesting">
+        Interesting
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/clapperboard.png" alt="Reels">
+        Reels
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/facebook-messenger.png" alt="Messages">
+        Messages
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/like.png" alt="Notifications">
+        Notifications
+    </a>
+    <a href="#">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/plus-math.png" alt="Create">
+        Create
+    </a>
+    <a href="/auth/profile">
+        <img src="https://img.icons8.com/ios-filled/50/ffffff/user.png" alt="Profile" class="profile-pic">
+        Profile
+    </a>
+</div>
+
+
+<script>
+    // JavaScript to handle profile actions
+    document.getElementById('follow-button').addEventListener('click', function() {
+        let followersCount = document.getElementById('followers-count');
+        let count = parseInt(followersCount.innerText);
+        followersCount.innerText = count + 1;
+        this.innerText = 'Подписки';
+        this.disabled = true;
+    });
+
+    // Function to update profile details after registration
+    function updateProfile(username) {
+        document.getElementById('username').innerText = username;
+        document.getElementById('followers-count').innerText = '0';
+        document.getElementById('following-count').innerText = '0';
+    }
+
+    // Example usage: after registration
+    // In actual implementation, this would be called with the real username
+    updateProfile();
+</script>
+</body>
+</html>

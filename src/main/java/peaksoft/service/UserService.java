@@ -10,7 +10,7 @@ import java.util.List;
  */
 public interface UserService {
     String singUp(User newUser);
-    String singIn(User oldUser);
+    User singIn(User oldUser);
 
     UserInfo userProfile(UserInfo userInfo);
     User findUserById(Long userId);
